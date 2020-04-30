@@ -93,6 +93,9 @@ char *termname = "st-256color";
  */
 unsigned int tabspaces = 8;
 
+/* bg opacity */
+float alpha = 1.0;
+
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
@@ -212,6 +215,7 @@ ResourcePref resources[] = {
 		{ "foreground",   STRING,  &colorname[258] },
 		{ "rcursorColor", STRING,  &colorname[257] },
 		{ "cursorColor",  STRING,  &colorname[256] },
+		{ "alpha",        FLOAT,   &alpha },
 		{ "termname",     STRING,  &termname },
 		{ "shell",        STRING,  &shell },
 		{ "blinktimeout", INTEGER, &blinktimeout },
