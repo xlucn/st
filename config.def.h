@@ -167,6 +167,16 @@ static unsigned int mousebg = 0;
 static unsigned int defaultattr = 11;
 
 /*
+ * Command to filter piped content from externalpipe and show urls with dmenu.
+ * In my fork this command is a shell script in my dotfiles repo, which is going
+ * to be installed in $HOME/.local/bin/.
+ * For my script, see http://www.github.com/OliverLew/dotfiles
+ * If you don't want to use it, you can copy the command from Luke Smith's fork
+ * or use the script at http://st.suckless.org/patches/externalpipe
+ */
+static char *openurlcmd[] = { "openurl", "externalpipe", NULL };
+
+/*
  * Force mouse select/shortcuts while mask is active (when MODE_MOUSE is set).
  * Note that if you want to use ShiftMask with selmasks, set this to an other
  * modifier, set to 0 to not use it.
@@ -236,9 +246,9 @@ static Shortcut shortcuts[] = {
 	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
 	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
 	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
-	{ TERMMOD,              XK_Prior,       zoom,           {.f = +1} },
-	{ TERMMOD,              XK_Next,        zoom,           {.f = -1} },
-	{ TERMMOD,              XK_Home,        zoomreset,      {.f =  0} },
+	{ ControlMask,          XK_equal,       zoom,           {.f = +1} },
+	{ ControlMask,          XK_minus,       zoom,           {.f = -1} },
+	{ ControlMask,          XK_0,           zoomreset,      {.f =  0} },
 	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0} },
 	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
@@ -246,6 +256,7 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
 	{ ShiftMask,            XK_Page_Up,     kpageup,        {.i =  0} },
 	{ ShiftMask,            XK_Page_Down,   kpagedown,      {.i =  0} },
+	{ TERMMOD,              XK_U,           externalpipe,   {.v = openurlcmd} },
 };
 
 /*
