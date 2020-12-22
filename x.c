@@ -962,7 +962,7 @@ xloadfont(Font *f, FcPattern *pattern)
 	FcConfigSubstitute(NULL, configured, FcMatchPattern);
 	XftDefaultSubstitute(xw.dpy, xw.scr, configured);
 
-	match = FcFontMatch(NULL, configured, &result);
+	match = XftFontMatch(xw.dpy, xw.scr, configured, &result);
 	if (!match) {
 		FcPatternDestroy(configured);
 		return 1;
